@@ -487,163 +487,225 @@ const ProductDetails = () => {
             )}
           </View>
 
-          {loading ? (
-            <View
-              className={
-                "w-[90%] self-center rounded-lg bg-gray-100 h-20 mb-5 "
-              }
-            >
-              <Text className="font-medium text-lg mr-5 ml-2 text-gray-500"></Text>
-            </View>
-          ) : (
-            <View>
-              {sizes && (
-                <View>
-                  <View className="flex-row mt-5 p-5 pt-0">
-                    <View className="w-[75%] justify-center items-start">
-                      <Text className="text-[20px] font-semibold">Size</Text>
-                    </View>
-                    <View className="w-[25%] justify-center items-end"></View>
-                  </View>
-                  <FlatList
-                    horizontal
-                    data={sizes.options}
-                    keyExtractor={(item) => `${item}`}
-                    renderItem={renderSizes}
-                    showsHorizontalScrollIndicator={false}
-                  />
-                </View>
-              )}
-              {colors && (
-                <View>
-                  <View className="flex-row mt-5 p-5 pt-0">
-                    <View className="w-[75%] justify-center items-start">
-                      <Text className="text-[20px] font-semibold">Color</Text>
-                    </View>
-                    <View className="w-[25%] justify-center items-end"></View>
-                  </View>
-                  <FlatList
-                    horizontal
-                    data={colors.options}
-                    keyExtractor={(item) => `${item}`}
-                    renderItem={renderColors}
-                    showsHorizontalScrollIndicator={false}
-                  />
-                </View>
-              )}
+          {sizes &&
+          sizes.options &&
+          sizes.options.length > 0 &&
+          colors &&
+          colors.options &&
+          colors.options.length > 0 ? null : loading ? null : (
+            <View className="p-5 justify-center items-center mt-6">
+              <Text
+                style={{ color: appStyle.Colors.primaryColor }}
+                className="text-[18px] font-bold"
+              >
+                This product and is not available
+              </Text>
             </View>
           )}
 
-          {loading ? (
-            <View
-              className={
-                "w-[90%] self-center rounded-lg bg-gray-100 h-[100px] mb-5"
-              }
-            >
-              <Text className="font-medium text-lg mr-5 ml-2 text-gray-500"></Text>
-            </View>
-          ) : (
-            <View className="p-5 pt-2 mt-5">
-              <Text className="text-[20px] font-semibold">Description</Text>
+          <View>
+            {loading ? (
+              <View
+                className={
+                  "w-[90%] self-center rounded-lg bg-gray-100 h-20 mb-5 "
+                }
+              >
+                <Text className="font-medium text-lg mr-5 ml-2 text-gray-500"></Text>
+              </View>
+            ) : (
               <View>
-                <HTML
-                  contentWidth={windowWidth}
-                  tagsStyles={{
-                    p: { fontSize: 16, color: "#6B7280" },
-                  }}
-                  source={{
-                    html: showMore
-                      ? productDescription
-                      : truncateText(productDescription, 1),
-                  }}
-                />
-
-                <TouchableOpacity onPress={toggleShowMore}>
-                  <Text style={{ color: "blue" }}>
-                    {showMore ? "Show less" : "Show more"}
-                  </Text>
-                </TouchableOpacity>
+                {sizes &&
+                sizes.options &&
+                sizes.options.length > 0 &&
+                colors &&
+                colors.options &&
+                colors.options.length > 0 ? (
+                  <>
+                    {sizes && (
+                      <View>
+                        <View className="flex-row mt-5 p-5 pt-0">
+                          <View className="w-[75%] justify-center items-start">
+                            <Text className="text-[20px] font-semibold">
+                              Size
+                            </Text>
+                          </View>
+                          <View className="w-[25%] justify-center items-end"></View>
+                        </View>
+                        <FlatList
+                          horizontal
+                          data={sizes.options}
+                          keyExtractor={(item) => `${item}`}
+                          renderItem={renderSizes}
+                          showsHorizontalScrollIndicator={false}
+                        />
+                      </View>
+                    )}
+                    {colors && (
+                      <View>
+                        <View className="flex-row mt-5 p-5 pt-0">
+                          <View className="w-[75%] justify-center items-start">
+                            <Text className="text-[20px] font-semibold">
+                              Color
+                            </Text>
+                          </View>
+                          <View className="w-[25%] justify-center items-end"></View>
+                        </View>
+                        <FlatList
+                          horizontal
+                          data={colors.options}
+                          keyExtractor={(item) => `${item}`}
+                          renderItem={renderColors}
+                          showsHorizontalScrollIndicator={false}
+                        />
+                      </View>
+                    )}
+                  </>
+                ) : null}
               </View>
-            </View>
-          )}
+            )}
 
-          {loading ? (
-            <View
-              className={
-                "w-[90%] self-center rounded-lg bg-gray-100 h-[100px] mb-5"
-              }
-            >
-              <Text className="font-medium text-lg mr-5 ml-2 text-gray-500"></Text>
-            </View>
-          ) : (
-            <>
-              <View className="flex-row  p-5 pt-0 pb-2">
-                <View className="w-[75%] justify-center items-start">
-                  <Text className="text-[20px] font-semibold">Reviews</Text>
-                </View>
-                <View className="w-[25%] justify-center items-end">
-                  <TouchableOpacity
-                    onPress={() =>
-                      router.push({
-                        pathname: "/ReviewsByProduct/",
-                        params: {
-                          productDetails: paramItem["id"],
-                        },
-                      })
-                    }
-                  >
-                    <Text className="text-[15px] font-medium text-gray-400">
-                      View All
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+            {loading ? (
+              <View
+                className={
+                  "w-[90%] self-center rounded-lg bg-gray-100 h-[100px] mb-5"
+                }
+              >
+                <Text className="font-medium text-lg mr-5 ml-2 text-gray-500"></Text>
               </View>
+            ) : sizes &&
+              sizes.options &&
+              sizes.options.length > 0 &&
+              colors &&
+              colors.options &&
+              colors.options.length > 0 ? (
+              <>
+                <View className="p-5 pt-2 mt-5">
+                  <Text className="text-[20px] font-semibold">Description</Text>
+                  <View>
+                    <HTML
+                      contentWidth={windowWidth}
+                      tagsStyles={{
+                        p: { fontSize: 16, color: "#6B7280" },
+                      }}
+                      source={{
+                        html: showMore
+                          ? productDescription
+                          : truncateText(productDescription, 1),
+                      }}
+                    />
 
-              {allReviews.length > 0 ? (
-                <View className="p-5 pt-0">
-                  <FlatList
-                    data={allReviews}
-                    keyExtractor={(item) => `${item.id}`}
-                    renderItem={renderReviewItem}
-                    scrollEnabled={false}
-                  />
+                    <TouchableOpacity onPress={toggleShowMore}>
+                      <Text style={{ color: "blue" }}>
+                        {showMore ? "Show less" : "Show more"}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-              ) : (
-                <View className="justify-center items-center mt-7 mb-7">
-                  <Text className="text-[18px] text-gray-400">
-                    No Reviews Availabe!
-                  </Text>
-                </View>
-              )}
-            </>
-          )}
+              </>
+            ) : null}
+
+            {loading ? (
+              <View
+                className={
+                  "w-[90%] self-center rounded-lg bg-gray-100 h-[100px] mb-5"
+                }
+              >
+                <Text className="font-medium text-lg mr-5 ml-2 text-gray-500"></Text>
+              </View>
+            ) : (
+              <>
+                {sizes &&
+                sizes.options &&
+                sizes.options.length > 0 &&
+                colors &&
+                colors.options &&
+                colors.options.length > 0 ? (
+                  <>
+                    <View className="flex-row  p-5 pt-0 pb-2">
+                      <View className="w-[75%] justify-center items-start">
+                        <Text className="text-[20px] font-semibold">
+                          Reviews
+                        </Text>
+                      </View>
+                      <View className="w-[25%] justify-center items-end">
+                        <TouchableOpacity
+                          onPress={() =>
+                            router.push({
+                              pathname: "/ReviewsByProduct/",
+                              params: {
+                                productDetails: paramItem["id"],
+                              },
+                            })
+                          }
+                        >
+                          <Text className="text-[15px] font-medium text-gray-400">
+                            View All
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+
+                    {allReviews.length > 0 ? (
+                      <View className="p-5 pt-0">
+                        <FlatList
+                          data={allReviews}
+                          keyExtractor={(item) => `${item.id}`}
+                          renderItem={renderReviewItem}
+                          scrollEnabled={false}
+                        />
+                      </View>
+                    ) : (
+                      <View className="justify-center items-center mt-7 mb-7">
+                        <Text className="text-[18px] text-gray-400">
+                          No Reviews Availabe!
+                        </Text>
+                      </View>
+                    )}
+                  </>
+                ) : (
+                  ""
+                )}
+              </>
+            )}
+          </View>
         </View>
       </ScrollView>
       {loading ? null : (
         <>
-          {productStockStatus === "instock" ? (
+          {sizes &&
+          sizes.options &&
+          sizes.options.length > 0 &&
+          colors &&
+          colors.options &&
+          colors.options.length > 0 ? (
             <>
-              {alreadyInCart ? (
-                <ButtonOne
-                  onPress={() => router.push("/Cart/")}
-                  text="Go To Cart"
-                />
+              {productStockStatus === "instock" ? (
+                <>
+                  {alreadyInCart ? (
+                    <ButtonOne
+                      onPress={() => router.push("/Cart/")}
+                      text="Go To Cart"
+                    />
+                  ) : (
+                    <ButtonOne
+                      onPress={() => handleAddToCart()}
+                      text="Add to cart"
+                    />
+                  )}
+                </>
               ) : (
-                <ButtonOne
-                  onPress={() => handleAddToCart()}
-                  text="Add to cart"
-                />
+                <View className="p-5 justify-center items-center">
+                  <Text
+                    style={{ color: appStyle.Colors.primaryColor }}
+                    className="text-[17px] font-bold"
+                  >
+                    This product is out of stock
+                  </Text>
+                </View>
               )}
             </>
           ) : (
-            <View className="p-5 justify-center items-center">
-              <Text
-                style={{ color: appStyle.Colors.primaryColor }}
-                className="text-[17px] font-bold"
-              >
-                This product is out of stock
-              </Text>
-            </View>
+            ""
           )}
         </>
       )}
