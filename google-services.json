@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "193275000093",
+    "project_id": "dreesa-591e4",
+    "storage_bucket": "dreesa-591e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193275000093:android:a4a00ce9af99fd53d39df4",
+        "android_client_info": {
+          "package_name": "com.tagelda.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj3aj0pOywEuwLlXKgDVJSWFwMayJz9bE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
