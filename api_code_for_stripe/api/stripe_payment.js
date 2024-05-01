@@ -1,6 +1,6 @@
 require("dotenv").config();
 const stripe = require("stripe")(
-  "sk_test_51MfltGLxy1IjoLHfADATcTaEtey8n3admxkXs4gt2Bd0FQNctiyEJi6Nie3VOOVgAB7bP5ydYsAtahNpsYPvPNn100iwVitVPF"
+  ""
 );
 
 module.exports = async (req, res) => {
